@@ -19,7 +19,7 @@ function AccountContainer() {
 
 
   const handleDelete = (id) => {
-    fetch('http://localhost:8001/transactions/${id}', {
+    fetch(`http://localhost:8001/transactions/${id}`, {
       method: "DELETE",
     })
     .then((resp) => {
@@ -34,7 +34,7 @@ function AccountContainer() {
   };
   
   const handleSort = (sortBy) => {
-    fetch('http://localhost:8001/transactions?sortBy=${sortBy}')
+    fetch(`http://localhost:8001/transactions?sortBy=${sortBy}`)
       .then((resp) => resp.json())
       .then((data) => {
         const sortedTransactions = data.sort((a, b) => {
