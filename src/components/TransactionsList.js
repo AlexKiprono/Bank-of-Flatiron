@@ -15,7 +15,7 @@ function TransactionsList({ transactions, onDelete, onSort }) {
       <thead>
         <tr>
           <th>
-            <button className="btn cusor:pointer" onClick={() => handleSort("date")}>Date</button>
+            <button className="btn" onClick={() => handleSort("date")}>Date</button>
           </th>
           <th>
             <button className="btn" onClick={() => handleSort("description")}>Description</button>
@@ -24,7 +24,7 @@ function TransactionsList({ transactions, onDelete, onSort }) {
             <button className="btn" onClick={() => handleSort("category")}>Category</button>
           </th>
           <th>
-            <button className="btn" onClick={() => handleSort("amount")}>Amount</button>
+            <h3 className="btn" >Amount</h3>
           </th>
           <th><h3>Delete</h3></th>
         </tr>
