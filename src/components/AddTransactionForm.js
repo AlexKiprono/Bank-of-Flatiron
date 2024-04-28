@@ -6,6 +6,7 @@ function AddTransactionForm() {
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
   const [amount, setAmount] = useState("")
+
   function handleSubmit(e) {
     fetch("http://localhost:8001/transactions", {
       method: "POST",
@@ -19,7 +20,7 @@ function AddTransactionForm() {
         amount: amount,
       }),
     });
-     alert("added successfully")
+     alert("Transaction added successfully")
   }
   return (
     <div className="ui segment">
@@ -30,9 +31,7 @@ function AddTransactionForm() {
           <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" name="category" placeholder="Category" />
           <input value={amount} onChange={(e) => setAmount(e.target.value)} type="number" name="amount" placeholder="Amount" step="0.01" />
         </div>
-        <button className="ui button" type="submit">
-          Add Transaction
-        </button>
+        <button className="ui button" type="submit">Add Transaction</button>
       </form>
     </div>
   );

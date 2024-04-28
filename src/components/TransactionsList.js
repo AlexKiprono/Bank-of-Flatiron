@@ -1,28 +1,46 @@
 import React from "react";
-import Transaction from "./Transaction";
-function TransactionsList({transactions}) {
-  const list = transactions.map((item)=>{
-    return <Transaction key={item.id} date={item.date} description={item.description} category={item.category} amount={item.amount} />;
-  })
+
+function TransactionsList({ transactions, onDelete, onSort }) {
+
+  const handleSort = (sortBy) => {
+    onSort(sortBy);
+  };
+
+  const handleDelete = (id) => {
+    onDelete(id);
+  };
+
   return (
     <table className="ui celled striped padded table">
-      <tbody>
+      <thead>
         <tr>
           <th>
-            <h3 className="ui center aligned header">Date</h3>
+            <button className="btn cusor:pointer" onClick={() => handleSort("date")}>Date</button>
           </th>
           <th>
-            <h3 className="ui center aligned header">Description</h3>
+            <button className="btn" onClick={() => handleSort("description")}>Description</button>
           </th>
           <th>
-            <h3 className="ui center aligned header">Category</h3>
+            <button className="btn" onClick={() => handleSort("category")}>Category</button>
           </th>
           <th>
-            <h3 className="ui center aligned header">Amount</h3>
+            <button className="btn" onClick={() => handleSort("amount")}>Amount</button>
           </th>
+          <th><h3>Delete</h3></th>
         </tr>
-        {/* render a list of <Transaction> components here */}
-        {list}
+      </thead>
+      <tbody>
+        {transactions && transactions.map((transaction) => (
+          <tr key={transaction.id}>
+            <td>{transaction.date}</td>
+            <td>{transaction.description}</td>
+            <td>{transaction.category}</td>
+            <td>{transaction.amount}</td>
+            <td>
+              <button onClick={() => handleDelete(transaction.id)}>Delete</button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

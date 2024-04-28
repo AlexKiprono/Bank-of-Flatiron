@@ -7,6 +7,7 @@ function Transaction({date, description, category, amount}) {
       <td>{description}</td>
       <td>{category}</td>
       <td>{amount}</td>
+      <td><button>Delete</button></td>
     </tr>
   );
 }
