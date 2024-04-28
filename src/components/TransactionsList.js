@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Transaction from "./Transaction";
-
-function TransactionsList() 
-{
-  const [transactions, setTransactions] = useState([])
-
-  useEffect(()=>{
-
-    fetch('http://localhost:8001/transactions')
-      .then((response) => response.json())
-      .then((data) => {
-
-       setTransactions(data)
-
-      } );
-
-  }, [])
-  
-  console.log(transactions);
+function TransactionsList({transactions}) {
+  const list = transactions.map((item)=>{
+    return <Transaction key={item.id} date={item.date} description={item.description} category={item.category} amount={item.amount} />;
+  })
   return (
     <table className="ui celled striped padded table">
       <tbody>
@@ -36,25 +22,7 @@ function TransactionsList()
           </th>
         </tr>
         {/* render a list of <Transaction> components here */}
-        {
-          transactions && transactions.map((transaction)=>(
-         <tr key={transaction.id}>
-          <td>
-            <p >{transaction.date}</p>
-          </td>
-          <td>
-            <p >{transaction.description}n</p>
-          </td>
-          <td>
-            <p >{transaction.category}</p>
-          </td>
-          <td>
-            <p >{transaction.amount}</p>
-          </td>
-        </tr>
-
-          ))
-        }
+        {list}
       </tbody>
     </table>
   );
